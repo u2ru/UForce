@@ -29,3 +29,7 @@ for this fork, create a folder in your C drive called 'webdrivers' and place the
 2). When Asked put in the username to brute force<br>
 3). Password list...<br>
 4). Watch it go!
+
+### Licensed under the [MIT License](LICENSE)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
