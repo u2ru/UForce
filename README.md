@@ -30,6 +30,6 @@ for this fork, create a folder in your C drive called 'webdrivers' and place the
 3). Password list...<br>
 4). Watch it go!
 
-### Licensed under the [MIT License](LICENSE)
+### Licensed under the MIT License
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
